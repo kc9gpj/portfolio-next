@@ -14,7 +14,5 @@ export const contact = async (data: any) => {
             text: `Name: ${data?.name}  email: ${data?.email}  message: ${data?.message} `
         })
     })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
+    return
 }
