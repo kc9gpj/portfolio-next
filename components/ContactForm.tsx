@@ -6,6 +6,7 @@ function ContactForm() {
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
+    lastName: '',
     email: '',
     message: '',
   });
@@ -20,6 +21,9 @@ function ContactForm() {
     console.log('event')
     console.log(e)
     e.preventDefault();
+    if (formData?.lastName.length) {
+      return;
+    }
     try {
       const response: any = await contact(formData)
       console.log(response)
@@ -49,6 +53,14 @@ function ContactForm() {
               onChange={handleChange}
               placeholder="Your Name"
               required
+            />
+            <input
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Your Last Name"
+              hidden={true}
             />
             <input
               type="email"
