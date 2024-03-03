@@ -13,10 +13,10 @@ export const contact = async (formData: any) => {
         };
         mg.messages().send(data, function (error, body) {
             console.log(body);
-            return body;
+            return;
         });
 
     } catch (e) {
-        return e
+        return e;
     }
 }
