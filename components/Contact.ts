@@ -1,10 +1,10 @@
 'use server'
 
 export const contact = async (data: any) => {
-    await fetch('https://api.mailgun.net/v3/sandbox67c968c5cc49421eb5dd0058c9307249.mailgun.org/messages', {
+    await fetch(`https://api.mailgun.net/v3/${process.env.MAILGUN_URL}/messages`, {
         method: 'POST',
         headers: {
-            'Authorization': 'Basic ' + btoa('api:1507f0dd46564fc950d113b2c0a95b4a-b7b36bc2-4a36f6d0'),
+            'Authorization': 'Basic ' + btoa(`api:${process.env.MAILGUN}`),
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: new URLSearchParams({
