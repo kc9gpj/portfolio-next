@@ -51,11 +51,11 @@ export default function Nav() {
               Education
             </a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a className="nav-link js-scroll-trigger" href="#skills">
               Skills
             </a>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a className="nav-link js-scroll-trigger" href="#interests">
               Interests

@@ -16,17 +16,17 @@ const projects: any = [
     title: "Marketing Website: Python, Django, Vue.js",
     imgSrc: "/images/marketing.png",
     viewLink: "https://www.legalfit.com",
-    sourceLink: "", // Private
+    sourceLink: "",
     technologies: ["python.png", "javascript.png", "vue.png"],
   },
-  {
-    id: "sales-app",
-    title: "Sales App: React-Native, Apex/SOQL",
-    imgSrc: "/images/demo.png",
-    viewLink: "", // Demo or private, no link provided
-    sourceLink: "", // Private
-    technologies: ["react_native.png", "salesforce.png"],
-  },
+  // {
+  //   id: "sales-app",
+  //   title: "Sales App: React-Native, Apex/SOQL",
+  //   imgSrc: "/images/demo.png",
+  //   viewLink: "",
+  //   sourceLink: "",
+  //   technologies: ["react_native.png", "salesforce.png"],
+  // },
   {
     id: "now-playing",
     title: "Now Playing: Angular",
@@ -36,34 +36,25 @@ const projects: any = [
     technologies: ["angular.png"],
   },
   {
-    id: "clicky-game",
-    title: "South Park Clicky Game: React.js",
-    imgSrc: "/images/southpark.png",
-    viewLink: "https://south-park-clicky-game.vercel.app/",
-    sourceLink: "https://github.com/kc9gpj/SouthParkClickyGame",
-    technologies: ["react.png"],
-  },
-  {
     id: "integrated-roadways",
     title: "Integrated Roadways: Node.js, React.js, GraphQL",
     imgSrc: "/images/integrated.png",
     viewLink: "https://integratedroadways.com",
-    sourceLink: "", // Private
+    sourceLink: "",
     technologies: ["react.png", "node.png", "graphql.png"],
   },
-  // Example of another project without a view link (demo or private)
-  {
-    id: "project-management",
-    title: "Project Management Dashboard: Vue.js, Firebase",
-    imgSrc: "/images/project_management.png",
-    viewLink: "", // Assume no public view available
-    sourceLink: "https://github.com/your-github/project-management-dashboard",
-    technologies: ["vue.png", "firebase.png"],
-  },
+  // {
+  //   id: "clicky-game",
+  //   title: "South Park Clicky Game: React.js",
+  //   imgSrc: "/images/southpark.png",
+  //   viewLink: "https://south-park-clicky-game.vercel.app/",
+  //   sourceLink: "https://github.com/kc9gpj/SouthParkClickyGame",
+  //   technologies: ["react.png"],
+  // },
 ];
 
 const ProjectCard: React.FC<ProjectProps> = ({ project }) => (
-  <li className="col-6">
+  <li className="col-6 mb-3">
     <div className="card h-100">
       <img className="card-img-top" src={project.imgSrc} alt="Card image cap" />
       <div className="card-body">
@@ -94,6 +85,13 @@ const ProjectCard: React.FC<ProjectProps> = ({ project }) => (
               className="btn btn-success"
             >
               Source
+            </a>
+          )}
+          {!project.sourceLink && (
+            <a
+              className="btn btn-secondary"
+            >
+              Private
             </a>
           )}
         </div>
