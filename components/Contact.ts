@@ -3,6 +3,9 @@
 import axios from 'axios';
 
 export const contact = async (data: any) => {
+    console.log(`https://api.mailgun.net/v3/${process.env.MAILGUN_URL}/messages`)
+    console.log(btoa(`api:${process.env.MAILGUN_KEY}`))
+    console.log(`api:${process.env.MAILGUN_KEY}`)
     try {
         const response = await axios.post(`https://api.mailgun.net/v3/${process.env.MAILGUN_URL}/messages`, new URLSearchParams({
             from: 'kc9gpj12@gmail.com',
