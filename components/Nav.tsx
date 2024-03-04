@@ -45,6 +45,7 @@ export default function Nav() {
       e.preventDefault();
       document.querySelector(hash).scrollIntoView({ behavior: 'smooth' });
     }
+    setIsNavCollapsed(true);
   };
 
   return (

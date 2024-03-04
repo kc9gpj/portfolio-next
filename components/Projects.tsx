@@ -5,11 +5,11 @@ interface ProjectProps {
 const projects: any = [
   {
     id: "portfolio",
-    title: "Portfolio: Next.js",
+    title: "Portfolio: Next.js, Typescript",
     imgSrc: "/images/portfolio-next.png",
     viewLink: "https://dhoff.net",
     sourceLink: "https://github.com/kc9gpj/portfolio-next",
-    technologies: ["next.png"],
+    technologies: ["next.png", "typescript.png"],
   },
   {
     id: "stocks",
@@ -37,19 +37,19 @@ const projects: any = [
   // },
   {
     id: "now-playing",
-    title: "Now Playing: Angular",
+    title: "Now Playing: Angular, Typescript",
     imgSrc: "/images/nowplaying.png",
     viewLink: "https://angular-now-playing.vercel.app/movies",
     sourceLink: "https://github.com/kc9gpj/angular-now-playing",
-    technologies: ["angular.png"],
+    technologies: ["angular.png", "typescript.png"],
   },
   {
     id: "integrated-roadways",
-    title: "Integrated Roadways: Node.js, React.js, GraphQL",
+    title: "Integrated Roadways: Node.js, React, Typescript GraphQL",
     imgSrc: "/images/integrated.png",
     viewLink: "https://integratedroadways.com",
     sourceLink: "",
-    technologies: ["react.png", "node.png", "graphql.png"],
+    technologies: ["react.png", "node.png", "typescript.png", "graphql.png"],
   },
   // {
   //   id: "clicky-game",
@@ -71,7 +71,7 @@ const ProjectCard: React.FC<ProjectProps> = ({ project }) => (
         </h2>
         <div id="icons">
           {project.technologies.map((tech: any) => (
-            <img key={tech} src={`/images/${tech}`} height="32" width="32" />
+            <img key={tech} src={`/images/${tech}`} className="ml-1" height="32" width="32" />
           ))}
         </div>
       </div>

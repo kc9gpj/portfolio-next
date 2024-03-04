@@ -78,7 +78,7 @@ function ContactForm() {
               required
             />
             {message && (<div className='p-3 text-success'>{message}</div>)}
-            <button className="bg-primary p-3" type="submit">Send</button>
+            <button className="text-white bg-primary p-3" type="submit">Send</button>
           </form>
         </div>
       </div>
