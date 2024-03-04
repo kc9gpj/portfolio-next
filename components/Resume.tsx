@@ -1,7 +1,7 @@
 export default function Resume() {
   return (
-    <div className="resume-div" id="experience">
-      <div className="resume-div-content">
+    <div className="container-div" id="experience">
+      <div className="container-div-content">
         <h2 className="mb-5">Experience</h2>
         <div className="d-flex flex-column flex-md-row justify-content-between mb-5">
           <div className="flex-grow-1">

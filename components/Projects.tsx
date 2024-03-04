@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface ProjectProps {
   project: any;
 }
@@ -27,14 +29,6 @@ const projects: any = [
     sourceLink: "",
     technologies: ["python.png", "javascript.png", "vue.png"],
   },
-  // {
-  //   id: "sales-app",
-  //   title: "Sales App: React-Native, Apex/SOQL",
-  //   imgSrc: "/images/demo.png",
-  //   viewLink: "",
-  //   sourceLink: "",
-  //   technologies: ["react_native.png", "salesforce.png"],
-  // },
   {
     id: "now-playing",
     title: "Now Playing: Angular, Typescript",
@@ -51,27 +45,19 @@ const projects: any = [
     sourceLink: "",
     technologies: ["react.png", "node.png", "typescript.png", "graphql.png"],
   },
-  // {
-  //   id: "clicky-game",
-  //   title: "South Park Clicky Game: React.js",
-  //   imgSrc: "/images/southpark.png",
-  //   viewLink: "https://south-park-clicky-game.vercel.app/",
-  //   sourceLink: "https://github.com/kc9gpj/SouthParkClickyGame",
-  //   technologies: ["react.png"],
-  // },
 ];
 
 const ProjectCard: React.FC<ProjectProps> = ({ project }) => (
   <li className="col-6 mb-3">
     <div className="card h-100">
-      <img className="card-img-top" src={project.imgSrc} alt="Card image cap" />
+      <img className="card-img-top" src={project.imgSrc} alt={project.title} />
       <div className="card-body">
         <h2 className="project-text card-text text-centered">
           {project.title}
         </h2>
         <div id="icons">
           {project.technologies.map((tech: any) => (
-            <img key={tech} src={`/images/${tech}`} className="ml-1" height="32" width="32" />
+            <Image key={tech} src={`/images/${tech}`} alt={tech} className="ml-1" height="32" width="32" />
           ))}
         </div>
       </div>
@@ -110,8 +96,8 @@ const ProjectCard: React.FC<ProjectProps> = ({ project }) => (
 
 export default function Projects() {
   return (
-    <div className="resume-div" id="projects">
-      <div className="resume-div-content">
+    <div className="container-div" id="projects">
+      <div className="container-div-content">
         <h2 className="mb-5">Projects</h2>
         <div className="container" id="jumbotron">
           <ol className="row" id="table">

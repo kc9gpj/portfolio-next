@@ -1,6 +1,6 @@
 export default function Interests() {
   return (
-    <div className="resume-div" id="interests">
+    <div className="container-div" id="interests">
       <div className="resume-section-content">
         <h2 className="mb-5">Interests</h2>
         <p>A lifelong experimenter, tinkerer, and world traveler. Since I was young I have enjoyed building computers,

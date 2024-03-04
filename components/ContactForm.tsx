@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { contact } from './Contact';
 
 function ContactForm() {
@@ -11,15 +11,20 @@ function ContactForm() {
     message: '',
   });
 
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage('');
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: any) => {
-    console.log('formData')
-    console.log(JSON.stringify(formData))
-    console.log('event')
-    console.log(e)
     e.preventDefault();
     if (formData?.lastName.length) {
       return;
@@ -28,14 +33,20 @@ function ContactForm() {
       const response: any = await contact(formData)
       console.log(response)
       setMessage('Sent successfully');
+      setFormData({
+        name: '',
+        lastName: '',
+        email: '',
+        message: '',
+      })
     } catch (error) {
       setMessage('Error sending email');
     }
   };
 
   return (
-    <div className="resume-div" id="contact">
-      <div className="resume-div-content">
+    <div className="container-div" id="contact">
+      <div className="container-div-content">
         <h2 className="mb-0">
           David
           <span className="text-primary last-name">Hoffmann</span>

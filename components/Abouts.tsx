@@ -7,8 +7,8 @@ export default function About() {
   }
 
   return (
-    <div className="resume-div" id="about">
-      <div className="resume-div-content">
+    <div className="container-div" id="about">
+      <div className="container-div-content">
         <h1 className="mb-0">
           David
           <span className="text-primary last-name">Hoffmann</span>

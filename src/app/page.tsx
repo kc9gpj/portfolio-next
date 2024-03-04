@@ -10,7 +10,6 @@ import Interests from "../../components/Interests";
 // TO DO:
 // - blog section and posts (probably component on npm to use...does it need to be full blown and search and everything?)
 // - cut any unused css, but not sure how (move to tailwind?)
-// - better more descriptive classnames
 export default function Home() {
   return (
     <>

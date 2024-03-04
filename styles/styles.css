@@ -11066,7 +11066,7 @@ p.lead {
   font-size: 3rem;
 }
 
-div.resume-div {
+div.container-div {
   display: flex;
   align-items: center;
   padding-left: 1rem;
@@ -11076,18 +11076,18 @@ div.resume-div {
   max-width: 75rem;
 }
 
-div.resume-div .resume-div-content {
+div.container-div .container-div-content {
   width: 100%;
 }
 
 @media (min-width: 768px) {
-  div.resume-div {
+  div.container-div {
     min-height: 100vh;
   }
 }
 
 @media (min-width: 992px) {
-  div.resume-div {
+  div.container-div {
     padding-left: 3rem;
     padding-right: 3rem;
     padding-top: 5rem;
