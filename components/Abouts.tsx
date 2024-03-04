@@ -11,7 +11,7 @@ export default function About() {
       <div className="resume-div-content">
         <h1 className="mb-0">
           David
-          <span className="text-primary mx-2">Hoffmann</span>
+          <span className="text-primary last-name">Hoffmann</span>
         </h1>
         <div className="subheading mb-5">
           Shawnee, KS 66216 · (913) 325-0616 ·

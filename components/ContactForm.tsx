@@ -36,10 +36,10 @@ function ContactForm() {
   return (
     <div className="resume-div" id="contact">
       <div className="resume-div-content">
-        <h1 className="mb-0">
+        <h2 className="mb-0">
           David
-          <span className="text-primary mx-2">Hoffmann</span>
-        </h1>
+          <span className="text-primary last-name">Hoffmann</span>
+        </h2>
         <div className="subheading mb-5">
           Shawnee, KS 66216 · (913) 325-0616 ·
           <a href="mailto:dave@dhoff.net">dave@dhoff.net</a>

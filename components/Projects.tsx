@@ -4,6 +4,14 @@ interface ProjectProps {
 
 const projects: any = [
   {
+    id: "portfolio",
+    title: "Portfolio: Next.js",
+    imgSrc: "/images/portfolio-next.png",
+    viewLink: "https://dhoff.net",
+    sourceLink: "https://github.com/kc9gpj/portfolio-next",
+    technologies: ["next.png"],
+  },
+  {
     id: "stocks",
     title: "Stock Ticker Trends: Python, Django, Javascript, SQLite",
     imgSrc: "/images/stocks.png",

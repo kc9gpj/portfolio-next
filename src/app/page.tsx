@@ -6,14 +6,8 @@ import Projects from "../../components/Projects";
 import Education from "../../components/Education";
 import Contact from "../../components/ContactForm";
 import Interests from "../../components/Interests";
+
 // TO DO:
-// - check if anything broke in scripts
-// - hamburger dropdown not working
-// - move skills t obottom of about
-// - styling on projects page
-// - fix image paths
-// - skill and contact not navigating
-// - routing? do i bother?
 // - blog section and posts (probably component on npm to use...does it need to be full blown and search and everything?)
 // - cut any unused css, but not sure how (move to tailwind?)
 // - better more descriptive classnames
