@@ -11179,3 +11179,48 @@ ol li {
     display: block;
   }
 }
+
+#blog-layout {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card.large img {
+  max-height: 400px;
+  width: auto;
+  display: block;
+  margin: auto;
+}
+
+.card.small {
+  display: flex;
+  flex-direction: column;
+}
+
+.card.small img {
+  max-height: 190px;
+  width: auto;
+  display: block;
+  margin: auto;
+}
+
+.card-body {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+
+  .card.large img,
+  .card.small img {
+    max-height: 300px;
+  }
+
+  .card.small img {
+    max-height: 145px;
+  }
+}
