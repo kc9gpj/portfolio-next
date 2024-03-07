@@ -16,7 +16,7 @@ export default async function Blog() {
             <div id="page-top">
                 <div className="container-fluid p-0">
                     {posts.posts.map((post: any) => (
-                        <BlogCard key={post.id} post={post} />
+                        <BlogCard key={post.title} post={post} />
                     ))}
                 </div>
             </div>
