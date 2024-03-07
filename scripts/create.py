@@ -23,7 +23,7 @@ def generate_dummy_posts(n=3):
             "title": f"Dummy Title {uuid.uuid4()}",
             "imageUrl": f"https://example.com/image/{uuid.uuid4()}.jpg",
             "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "author": "John Doe",
+            "author": "David Hoffmann",
             "createdAt": datetime.now(),
             "updatedAt": datetime.now(),
         }

@@ -7,11 +7,11 @@ interface ProjectProps {
 const projects: any = [
   {
     id: "portfolio",
-    title: "Portfolio: Next.js, Typescript",
+    title: "Portfolio: Next.js, Typescript, MongoDB, Python",
     imgSrc: "/images/portfolio-next.png",
     viewLink: "https://dhoff.net",
     sourceLink: "https://github.com/kc9gpj/portfolio-next",
-    technologies: ["next.png", "typescript.png"],
+    technologies: ["next.png", "typescript.png", "mongo.png", "python.png"],
   },
   {
     id: "stocks",

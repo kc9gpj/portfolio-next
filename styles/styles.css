@@ -11209,10 +11209,6 @@ ol li {
   margin: auto;
 }
 
-.card-body {
-  text-align: center;
-}
-
 @media (max-width: 768px) {
 
   .card.large img,
@@ -11224,3 +11220,9 @@ ol li {
     max-height: 145px;
   }
 }
+
+/* code {
+  text-align: left;
+  background-color: black;
+  color: blue;
+} */
