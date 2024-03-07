@@ -1,4 +1,4 @@
-import "../../../styles/styles.css";
+import "../../../../styles/styles.css";
 import Nav from "../../../../components/Nav";
 
 export default function Blog() {
