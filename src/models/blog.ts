@@ -5,11 +5,15 @@ const blogPostSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    imageUrl: {
+    imagePath: {
         type: String,
         required: true,
     },
     content: {
+        type: String,
+        required: true,
+    },
+    summary: {
         type: String,
         required: true,
     },

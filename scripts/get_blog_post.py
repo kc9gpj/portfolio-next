@@ -1,46 +1,105 @@
 from openai import OpenAI
 import os
+import json
+import requests
+from datetime import datetime
+import re
+from pymongo import MongoClient
 
-client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
-response = client.chat.completions.create(
-  # model="gpt-3.5-turbo",
-  model="gpt-4-turbo-preview",
-  messages=[
-    {"role": "system", "content": "You are a helpful assistant designed to output JSON."},
-    {"role": "user", "content": "create a blog post about any javascript or python subject. \
-    keep it proffesional but casual. dont sound like a robot \
-    write at least 4-5 paragraphs and add code snippets as needed, return content as a markdown string \
-    fields to return are title, categories, and content as markdown. \
-    Markdown should be a single line without whitespace."
+MONGODB_URI = os.getenv('MONGODB_URI')
+DB_NAME = 'blog'
+COLLECTION_NAME = 'blogposts'
+mongo_client = MongoClient(MONGODB_URI)
+db = mongo_client[DB_NAME]
+collection = db[COLLECTION_NAME]
+
+def slugify(text):
+    """Generates a slug for the given text."""
+    slug = re.sub(r'\W+', '-', text)
+    slug = slug.lower()
+    slug = slug.strip('-')
+    return slug
+    
+def get_all_titles():
+    """Fetches all blog post titles from MongoDB and concatenates them into a single string."""
+    titles = collection.find({}, {'title': 1, '_id': 0})
+    title_list = [doc['title'] for doc in titles]
+    title_string = ', '.join(title_list)
+    print("Existing titles: ", title_string)
+    return title_string
+
+def generate_blog_post():
+    """Generates blog post content using OpenAI."""
+    response = openai_client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        # model="gpt-4-0125-preview",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant designed to output JSON."},
+            {"role": "user", "content": f"create a blog post about any javascript or python or any \
+             libraries or framesworks for these two languages. \
+              do not use any previously used titles: {get_all_titles()} \
+                keep it professional but casual. don't sound like a robot \
+                write at least 5-7 paragraphs(with code snippets as needed) in a field called content as a single line of markdown, \
+                other fields to return are title, categories, and \
+                 a summary field with the first 2-3 sentences of the article, return all data as plain JSON without encasing in markdown"}
+        ]
+    )
+    print(response)
+    content_str = response.choices[0].message.content
+    print(content_str)
+    content_dict = json.loads(content_str)
+    print(content_dict['title'])
+    return content_dict
+
+def fetch_blog_image(title):
+    """Fetches an image for the blog post using OpenAI's image generation."""
+    response = openai_client.images.generate(
+        model="dall-e-3",
+        prompt=f"blog post image for title {title}, keep the image professional and not too flashy",
+        size="1792x1024",
+        quality="standard",
+        n=1,
+    )
+    image_url = response.data[0].url
+    print(image_url)
+    return image_url
+
+def save_image(image_url, title):
+    """Saves the blog post image to a local path."""
+    save_path = f"../public/images/blog/{slugify(title)}.jpg"
+    response = requests.get(image_url)
+    if response.status_code == 200:
+        with open(save_path, 'wb') as file:
+            file.write(response.content)
+        print(f"Image saved to {save_path}")
+        return save_path
+    else:
+        print("Failed to retrieve the image")
+        return None
+
+def upload_data_to_mongodb(content_dict, image_path):
+    """Uploads the blog post data to MongoDB."""
+    blog_data = {
+        'title': content_dict['title'],
+        'imagePath': image_path.replace('../public',''),
+        'content': content_dict['content'],
+        'summary': content_dict['summary'],
+        'author': 'David Hoffmann',
+        'slug': slugify(content_dict['title']),
+        'createdAt': datetime.now(),
+        'updatedAt': datetime.now()
     }
-  ]
-)
-print(response)
-print(response.choices[0].message.content)
+    insert_result = collection.insert_one(blog_data)
+    if insert_result.acknowledged:
+        print(f"Blog post saved to MongoDB with _id: {insert_result.inserted_id}")
+    else:
+        print("Failed to save the blog post to MongoDB")
 
-# response.choices[0].message.content example
-# {
-#     "title": "The Power of Promises in JavaScript",
-#     "author": "Sarah Developer",
-#     "categories": ["JavaScript", "Web Development"],
-#     "content": "Promises in JavaScript are a powerful tool for handling asynchronous operations in a more elegant and readable way. As developers, we often encounter situations where we need to wait for some operation to complete before proceeding to the next step. This is where promises shine, allowing us to write cleaner and more maintainable code.\n\n```javascript\nfunction fetchData(url) {\n    return new Promise((resolve, reject) => {\n        fetch(url)\n            .then(response => {\n                if(response.ok) {\n                    resolve(response.json());\n                } else {\n                    reject('Failed to fetch data');\n                }\n            })\n            .catch(error => {\n                reject(error);\n            });\n    });\n}\n```\n\nWith promises, we can avoid callback hell and chain multiple asynchronous operations together in a more structured manner. This leads to code that is easier to reason about and maintain. By handling both success and error cases separately, promises provide a clear and concise way to manage asynchronous code.\n\nPromises also allow us to handle multiple asynchronous operations concurrently using methods like `Promise.all` and `Promise.race`. This enables us to improve the performance of our applications by fetching data in parallel rather than sequentially.\n\nIn conclusion, mastering promises in JavaScript is crucial for any developer looking to build modern and efficient web applications. By understanding how to leverage promises effectively, we can write cleaner, more readable code that handles asynchronous operations with ease."
-# }
-
-# print(f"blost post image for title {response.choices[0].message.content.title}")
-
-# response = client.images.generate(
-#   model="dall-e-3",
-#   prompt="blost post image for title: The Power of Promises in JavaScript",
-#   size="1024x1024",
-#   quality="standard",
-#   n=1,
-# )
-
-# image_url = response.data[0].url
-# print(response)
-# print(image_url)
-
-# response example
-# ImagesResponse(created=1709824927, data=[Image(b64_json=None, revised_prompt="Create an image that illustrates the concept of 'The Power of Promises in JavaScript'. Think about a large, enduring battery representing power, surrounded by abstract shapes embodying JavaScript syntax and coding elements. On the battery, write the word 'Promises'. Wire connections from the battery lead to glowing, functional gadgets — a reflection of the actions powered by these JavaScript promises.", url='https://oaidalleapiprodscus.blob.core.windows.net/private/org-yrmCAfJpZv8w48JCxElWRN1i/user-ymeocsLcECW5ZNrHnz65XGEO/img-R4ddMPRVGLOiI3Kc7wv2fTRm.png?st=2024-03-07T14%3A22%3A07Z&se=2024-03-07T16%3A22%3A07Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-03-07T14%3A26%3A13Z&ske=2024-03-08T14%3A26%3A13Z&sks=b&skv=2021-08-06&sig=99%2BbdfWzIxpBK3vvZrxfiq3FtRaqkQx3%2B%2BM4VwiWNhg%3D')])
-
+if __name__ == '__main__':
+    content_dict = generate_blog_post()
+    image_url = fetch_blog_image(content_dict['title'])
+    image_path = save_image(image_url, content_dict['title'])
+    if image_path:
+        upload_data_to_mongodb(content_dict, image_path)

@@ -44,17 +44,11 @@ export async function createBlogPosts(title: string) {
   }
 }
 
-export async function getBlogPosts(id: string) {
+export async function getBlogPosts(slug: string) {
   try {
     await connectDB();
 
-    const parsedId = stringToObjectId(id);
-
-    if (!parsedId) {
-      return { error: "post not found" };
-    }
-
-    const post = await BlogPost.findById(parsedId).lean().exec();
+    const post = await BlogPost.findOne({ slug }).lean().exec();
     if (post) {
       return {
         post,
@@ -63,9 +57,10 @@ export async function getBlogPosts(id: string) {
       return { error: "post not found" };
     }
   } catch (error) {
-    return { error };
+    return { error: error };
   }
 }
+
 
 export async function updateBlogPosts(
   id: string,

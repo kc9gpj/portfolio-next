@@ -14,11 +14,11 @@ export default async function Blog() {
         <>
             <Nav />
             <div id="page-top">
-                <div className="container-fluid p-0">
-                    {/* {posts.posts.map((post: any) => (
+                {/* <div className="container-fluid p-0">
+                    {posts.posts.map((post: any) => (
                         <BlogCard key={post.title} post={post} />
-                    ))} */}
-                </div>
+                    ))}
+                </div> */}
             </div>
         </>
     );

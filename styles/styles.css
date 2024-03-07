@@ -11186,23 +11186,23 @@ ol li {
   padding: 20px;
 }
 
-.card {
-  margin-bottom: 20px;
+.blog-card {
+  margin-bottom: 40px;
 }
 
-.card.large img {
+.blog-card.large img {
   max-height: 400px;
   width: auto;
   display: block;
   margin: auto;
 }
 
-.card.small {
+.blog-card.small {
   display: flex;
   flex-direction: column;
 }
 
-.card.small img {
+.blog-card.small img {
   max-height: 190px;
   width: auto;
   display: block;
@@ -11211,14 +11211,23 @@ ol li {
 
 @media (max-width: 768px) {
 
-  .card.large img,
-  .card.small img {
+  .blog-card.large img,
+  .blog-card.small img {
     max-height: 300px;
   }
 
-  .card.small img {
+  .blog-card.small img {
     max-height: 145px;
   }
+}
+
+.post-img-top {
+  margin: 0 auto;
+}
+
+.post-container {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 /* code {
