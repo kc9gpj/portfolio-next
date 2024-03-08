@@ -6,6 +6,7 @@ import BlogCard from "./blog-card";
 export default async function Blog() {
 
     const posts: any = await getBlog();
+    console.log(posts)
     if (!posts) {
         return;
     }
