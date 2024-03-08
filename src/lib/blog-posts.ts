@@ -14,9 +14,7 @@ export async function getBlog(filter: Filter = {}) {
     const page = filter.page ?? 1;
     const limit = filter.limit ?? 10;
     const skip = (page - 1) * limit;
-
-    const posts = await BlogPost.find().skip(skip).limit(limit).lean().exec();
-
+    const posts = await BlogPost.find().sort({ createdAt: -1 }).skip(skip).limit(limit).lean().exec();
     const results = posts.length;
 
     return {
@@ -29,6 +27,7 @@ export async function getBlog(filter: Filter = {}) {
     return { error };
   }
 }
+
 
 export async function createBlogPosts(title: string) {
   try {

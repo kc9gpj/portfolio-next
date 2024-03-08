@@ -10985,6 +10985,12 @@ p.lead {
   font-size: 1.5rem;
 }
 
+/* TO DO: figure out what to do with the css above, 
+its janky bootstrap ripoff borrowed 
+years ago when this was a static site,
+its unfortunately pretty integrated
+below is newer custom css */
+
 #sideNav .navbar-nav .nav-item .nav-link {
   font-weight: 800;
   letter-spacing: 0.05rem;
@@ -11223,6 +11229,9 @@ ol li {
 
 .post-img-top {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .post-container {
@@ -11230,8 +11239,13 @@ ol li {
   margin-right: 20px;
 }
 
-/* code {
-  text-align: left;
-  background-color: black;
-  color: blue;
-} */
+pre code {
+  display: block;
+  white-space: pre-wrap;
+  background-color: #000;
+  color: lightskyblue !important;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  overflow-x: auto;
+}

@@ -41,12 +41,12 @@ def generate_blog_post():
              libraries or framesworks for these two languages. \
               do not use any previously used titles: {get_all_titles()} \
                 keep it professional but casual. don't sound like a robot \
-                write at least 5-7 paragraphs(with code snippets as needed) in a field called content as a single line of markdown, \
+                write at least 5-7 paragraphs(with code snippets as needed) in a field called content as markdown, \
                 other fields to return are title, categories, and \
-                 a summary field with the first 2-3 sentences of the article, return all data as plain JSON without encasing in markdown"}
+                 a summary field with the first 2-3 sentences of the article"}
         ]
     )
-    print(response)
+    # print(response)
     content_str = response.choices[0].message.content
     print(content_str)
     content_dict = json.loads(content_str)

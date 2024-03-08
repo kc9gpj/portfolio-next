@@ -56,7 +56,7 @@ const ProjectCard: React.FC<ProjectProps> = ({ project }) => (
           {project.title}
         </h2>
         <div id="icons">
-          {project.technologies.map((tech: any) => (
+          {project?.technologies?.map((tech: any) => (
             <Image key={tech} src={`/images/${tech}`} alt={tech} className="ml-1" height="32" width="32" />
           ))}
         </div>
@@ -101,7 +101,7 @@ export default function Projects() {
         <h2 className="mb-5">Projects</h2>
         <div className="container" id="jumbotron">
           <ol className="row" id="table">
-            {projects.map((project: any) => (
+            {projects?.map((project: any) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </ol>
