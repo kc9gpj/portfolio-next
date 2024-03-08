@@ -16,9 +16,7 @@ function convertISODateToString(isoString: string) {
 export default async function Blog(params: any) {
     const post: any = await getBlogPosts(params?.params?.path);
     console.log(post)
-    if (!post) {
-        return;
-    }
+
     return (
         <>
             <Nav />
