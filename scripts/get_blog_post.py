@@ -33,8 +33,8 @@ def get_all_titles():
 def generate_blog_post():
     """Generates blog post content using OpenAI."""
     response = openai_client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        # model="gpt-4-0125-preview",
+        # model="gpt-3.5-turbo",
+        model="gpt-4-0125-preview",
         messages=[
             {"role": "system", "content": "You are a helpful assistant designed to output JSON."},
             {"role": "user", "content": f"create a blog post about any javascript or python or any \

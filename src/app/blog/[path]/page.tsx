@@ -21,7 +21,7 @@ export default async function Blog(params: any) {
         <>
             <Nav />
             <div id="page-top">
-                <div className="post-container">
+                <div className="container">
                     <Image width={896} height={512} src={post?.post?.imagePath} alt={post?.post?.title} className="post-img-top" />
                     <div className="blog-card-body">
                         <p className="blog-card-text"><small className="text-muted">{convertISODateToString(post?.post?.createdAt)}</small></p>
