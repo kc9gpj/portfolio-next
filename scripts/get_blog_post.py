@@ -16,14 +16,12 @@ db = mongo_client[DB_NAME]
 collection = db[COLLECTION_NAME]
 
 def slugify(text):
-    """Generates a slug for the given text."""
     slug = re.sub(r'\W+', '-', text)
     slug = slug.lower()
     slug = slug.strip('-')
     return slug
     
 def get_all_titles():
-    """Fetches all blog post titles from MongoDB and concatenates them into a single string."""
     titles = collection.find({}, {'title': 1, '_id': 0})
     title_list = [doc['title'] for doc in titles]
     title_string = ', '.join(title_list)
@@ -31,7 +29,6 @@ def get_all_titles():
     return title_string
 
 def generate_blog_post():
-    """Generates blog post content using OpenAI."""
     response = openai_client.chat.completions.create(
         # model="gpt-3.5-turbo",
         model="gpt-4-0125-preview",
@@ -55,7 +52,6 @@ def generate_blog_post():
     return content_dict
 
 def fetch_blog_image(title):
-    """Fetches an image for the blog post using OpenAI's image generation."""
     response = openai_client.images.generate(
         model="dall-e-3",
         prompt=f"blog post image for title {title}, keep the image professional and not too flashy",
@@ -68,7 +64,6 @@ def fetch_blog_image(title):
     return image_url
 
 def save_image(image_url, title):
-    """Saves the blog post image to a local path."""
     save_path = f"../public/images/blog/{slugify(title)}.jpg"
     response = requests.get(image_url)
     if response.status_code == 200:
@@ -81,7 +76,6 @@ def save_image(image_url, title):
         return None
 
 def upload_data_to_mongodb(content_dict, image_path):
-    """Uploads the blog post data to MongoDB."""
     blog_data = {
         'title': content_dict['title'],
         'imagePath': image_path.replace('../public',''),

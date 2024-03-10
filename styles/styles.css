@@ -73,6 +73,7 @@ div {
   color: #212529;
   text-align: left;
   background-color: #fff;
+  padding-bottom: 40px;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {

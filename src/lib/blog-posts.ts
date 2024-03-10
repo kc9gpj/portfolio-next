@@ -12,7 +12,8 @@ export async function getBlog(filter: Filter = {}) {
     await connectDB();
 
     const page = filter.page ?? 1;
-    const limit = filter.limit ?? 10;
+    // change limit back to 10 after pagination is added
+    const limit = filter.limit ?? 50;
     const skip = (page - 1) * limit;
     const posts = await BlogPost.find().sort({ createdAt: -1 }).skip(skip).limit(limit).lean().exec();
     const results = posts.length;
