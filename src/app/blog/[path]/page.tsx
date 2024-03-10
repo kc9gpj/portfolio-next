@@ -13,6 +13,13 @@ function convertISODateToString(isoString: string) {
     return `${dateString}`;
 }
 
+function isTitleInMarkdown(post: any): boolean {
+    if (post?.content.includes(post?.title)) {
+        return true;
+    }
+    return false;
+}
+
 export default async function Blog(params: any) {
     const post: any = await getBlogPosts(params?.params?.path);
     console.log(post)
@@ -27,6 +34,7 @@ export default async function Blog(params: any) {
                         <p className="blog-card-text"><small className="text-muted">{convertISODateToString(post?.post?.createdAt)}</small></p>
                         <p className="blog-card-text"><small className="text-muted">By {post?.post?.author}</small></p>
                     </div>
+                    {!isTitleInMarkdown(post?.post) && <h1>{post?.post?.title}</h1>}
                     <Markdown>{post?.post?.content}</Markdown>
                 </div >
             </div>

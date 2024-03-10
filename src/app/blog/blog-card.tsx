@@ -1,3 +1,4 @@
+import Image from "next/image";
 import "../../../styles/styles.css";
 
 function convertISODateToString(isoString: string) {
@@ -14,7 +15,7 @@ export default function BlogCard(props: any) {
     return (
         <>
             <div className={`blog-card large`}>
-                <img src={post?.imagePath.replace('../public/images/blog/', '/images/')} alt={post?.title} className="blog-card-img-top" />
+                <Image width={896} height={512} src={post?.imagePath} alt={post?.title} className="post-img-top" />
                 <div className="blog-card-body">
                     <h2 className="blog-card-title">{post?.title}</h2>
                     <p className="blog-card-text"><small className="text-muted">{convertISODateToString(post?.createdAt)}</small></p>

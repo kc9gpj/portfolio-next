@@ -35,13 +35,14 @@ def generate_blog_post():
     response = openai_client.chat.completions.create(
         # model="gpt-3.5-turbo",
         model="gpt-4-0125-preview",
+        response_format={ "type": "json_object" },
         messages=[
             {"role": "system", "content": "You are a helpful assistant designed to output JSON."},
             {"role": "user", "content": f"create a blog post about any javascript or python or any \
              libraries or framesworks for these two languages. \
               do not use any previously used titles: {get_all_titles()} \
                 keep it professional but casual. don't sound like a robot \
-                write at least 5-7 paragraphs(with code snippets as needed) in a field called content as markdown, \
+                write at least 7-10 paragraphs(with code snippets as needed) in a field called content as markdown, \
                 other fields to return are title, categories, and \
                  a summary field with the first 2-3 sentences of the article"}
         ]
