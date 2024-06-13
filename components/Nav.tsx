@@ -11,7 +11,7 @@ export default function Nav() {
     { hash: '#projects', ref: useRef() },
     { hash: '#education', ref: useRef() },
     { hash: '#interests', ref: useRef() },
-    { hash: '#contact', ref: useRef() },
+    //{ hash: '#contact', ref: useRef() },
   ];
 
   const router = useRouter();
