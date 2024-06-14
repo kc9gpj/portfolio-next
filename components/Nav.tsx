@@ -11,7 +11,7 @@ export default function Nav() {
     { hash: '#projects', ref: useRef() },
     { hash: '#education', ref: useRef() },
     { hash: '#interests', ref: useRef() },
-    //{ hash: '#contact', ref: useRef() },
+    { hash: '#contact', ref: useRef() },
   ];
 
   const router = useRouter();
@@ -71,7 +71,7 @@ export default function Nav() {
       </button>
       <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarSupportedContent">
         <ul className="navbar-nav">
-          {['about', 'experience', 'projects', 'education', 'interests'].map((section) => (
+          {['about', 'experience', 'projects', 'education', 'interests', 'contact'].map((section) => (
             <li className={`nav-item ${activeSection === `#${section}` ? 'active' : ''}`} key={section}>
               <a className="nav-link js-scroll-trigger" href={`#${section}`} onClick={handleNavLinkClick}>
                 {section.charAt(0).toUpperCase() + section.slice(1)}
