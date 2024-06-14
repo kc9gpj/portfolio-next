@@ -71,7 +71,7 @@ export default function Nav() {
       </button>
       <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarSupportedContent">
         <ul className="navbar-nav">
-          {['about', 'experience', 'projects', 'education', 'interests', 'contact'].map((section) => (
+          {['about', 'experience', 'projects', 'education', 'interests'].map((section) => (
             <li className={`nav-item ${activeSection === `#${section}` ? 'active' : ''}`} key={section}>
               <a className="nav-link js-scroll-trigger" href={`#${section}`} onClick={handleNavLinkClick}>
                 {section.charAt(0).toUpperCase() + section.slice(1)}
