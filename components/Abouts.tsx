@@ -14,8 +14,8 @@ export default function About() {
           <span className="text-primary last-name">Hoffmann</span>
         </h1>
         <div className="subheading mb-5">
-          Shawnee, KS 66216 · (913) 325-0616 ·
-          <a href="mailto:dave@dhoff.net">dave@dhoff.net</a>
+          Delafield, WI 53018 · (913) 325-0616 ·
+          <a href="mailto:dave@dhoff.net"> dave@dhoff.net</a>
         </div>
         <p className="lead mb-5">
           I am experienced in Full Stack Development utitlizing Python and

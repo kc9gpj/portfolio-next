@@ -52,8 +52,8 @@ function ContactForm() {
           <span className="text-primary last-name">Hoffmann</span>
         </h2>
         <div className="subheading mb-5">
-          Shawnee, KS 66216 · (913) 325-0616 ·
-          <a href="mailto:dave@dhoff.net">dave@dhoff.net</a>
+          Delafield, WI 53018 · (913) 325-0616 ·
+          <a href="mailto:dave@dhoff.net"> dave@dhoff.net</a>
         </div>
         <div className="form">
           <form onSubmit={handleSubmit} id="contact">
