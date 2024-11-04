@@ -78,9 +78,9 @@ export default function Nav() {
               </a>
             </li>
           ))}
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a className="nav-link" href="/blog" onClick={handleNavLinkClick}>Blog</a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>
